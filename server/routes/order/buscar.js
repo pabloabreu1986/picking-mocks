@@ -2,9 +2,8 @@
 
 const express = require('express');
 const app = express();
-const { verificarToken } = require('../../middlewares/auth');
 
-//obtiene un producto por un termino
+//obtiene el detalle de una orden por id
 app.get('/order/buscar/:id', (req, res) => {
 
   res.json({

@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 //obtiene los stats de un picker
-app.get('/pickes/stats/:id', (req, res) => {
+app.get('/picker/stats/:id', (req, res) => {
 
   res.json({
     OK: true,
