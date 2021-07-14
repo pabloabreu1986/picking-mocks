@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 //auth
-app.use(require('./auth/auth'));
+app.use(require('./auth'));
 
 // picker
 app.use(require('./picker/status'));
