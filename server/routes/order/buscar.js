@@ -3,9 +3,11 @@
 const express = require('express');
 const app = express();
 
+const ordersMock = require('./ordersMock');
+
 const orders = [
   {
-    id : 1,
+    id: 1,
     rawOrderId: '65 - 277 - 2945',
     status: 'picking',
     idStore: '88520b86-c2c4-4f3f-9c90-647dce2073c4',
@@ -28,7 +30,7 @@ const orders = [
     downloadedAt: `${new Date()}`,
   },
   {
-    id : 2,
+    id: 2,
     rawOrderId: '66 - 278 - 2950',
     status: 'picking',
     idStore: '88520b86-c2c4-4f3f-9c90-647dce2073c4',
@@ -54,16 +56,27 @@ const orders = [
 
 //obtiene todos los order
 app.get('/order', (req, res) => {
-  res.json({
-    orders
-  });
+  res.json(
+    ordersMock[req.type]);
 });
 
 //obtiene el detalle de una orden por id
-app.get('/order/:id', (req, res) => {
-  const id = req.params.id;
-  res.json({
-    order: orders.find(order => order.id == id)
+app.get('/order/:type', (req, res) => {
+  console.log('Received params: ', req.params);
+
+  const { type } = req.params;
+
+  let data = ordersMock[0];
+  let messageLog = 'Requested Jumbo order id: ';
+
+  if (type == 2) {
+    messageLog = 'Requested Easy orders Array id: ';
+    data = ordersMock[1]
+  }
+
+  console.log(messageLog, type);
+  return res.json({
+    data
   });
 });
 
